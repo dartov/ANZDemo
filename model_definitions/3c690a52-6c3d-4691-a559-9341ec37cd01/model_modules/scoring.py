@@ -20,7 +20,7 @@ def score(data_conf, model_conf, **kwargs):
                    password = os.environ["AOA_CONN_PASSWORD"],
                    database = "EP_SDS")
     
-    model_table = AOA_MODELS_{}".format(kwargs.get("model_version").split("-", 1)[0])
+    model_table = "AOA_MODELS_{}".format(kwargs.get("model_version").split("-", 1)[0])
     
     score = valib.LogRegPredict(data = DataFrame(data_conf["data_table"]), 
                                         model = DataFrame(model_table), 
@@ -33,12 +33,3 @@ def score(data_conf, model_conf, **kwargs):
     
     remove_context()
 
-
-# Uncomment this code if you want to deploy your model as a Web Service (Real-time / Interactive usage)
-# class ModelScorer(object):
-#    def __init__(self, config=None):
-#        self.model = joblib.load('models/iris_knn.joblib')
-#
-#    def predict(self, data):
-#        return self.model.predict([data])
-#
