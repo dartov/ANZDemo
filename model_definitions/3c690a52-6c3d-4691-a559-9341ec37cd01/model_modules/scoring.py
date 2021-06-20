@@ -20,8 +20,10 @@ def score(data_conf, model_conf, **kwargs):
                    password = os.environ["AOA_CONN_PASSWORD"],
                    database = "EP_SDS")
     
+    model_table = AOA_MODELS_{}".format(kwargs.get("model_version").split("-", 1)[0])
+    
     score = valib.LogRegPredict(data = DataFrame(data_conf["data_table"]), 
-                                        model = DataFrame(kwargs.get("model_table")), 
+                                        model = DataFrame(model_table), 
                                         estimate_column = "predicted_churn")
     
     df = score.result
