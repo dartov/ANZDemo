@@ -43,6 +43,8 @@ def evaluate(data_conf, model_conf, **kwargs):
         'f1-score': '{:.2f}'.format(metrics.f1_score(y_test, y_pred))
     }
 
+    # saving metrics to output dir
+    
     with open("artifacts/output/metrics.json", "w+") as f:
         json.dump(evaluation, f)
 
@@ -65,7 +67,6 @@ def evaluate(data_conf, model_conf, **kwargs):
     fig.savefig('artifacts/output/confusion_matrix', dpi=500)
     plt.clf()
 
-    # dump results as json file evaluation.json to models/ folder
     print("Evaluation complete...")
     
     remove_context()

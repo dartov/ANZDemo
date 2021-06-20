@@ -3,6 +3,7 @@ from teradataml.analytics.valib import *
 from teradataml import configure
 configure.val_install_location = "VAL"
 
+
 def train(data_conf, model_conf, **kwargs):
     """Python train method called by AOA framework
 
@@ -23,7 +24,7 @@ def train(data_conf, model_conf, **kwargs):
                    database = "EP_SDS")
 
     # load data & engineer
-    training_df = DataFrame(data_conf["data_table"])
+    training_df = DataFrame(data_conf["data_table"]).sample(frac = float(hyperparams["sampling"]))
 
     print("Starting training...")
 
@@ -36,7 +37,7 @@ def train(data_conf, model_conf, **kwargs):
 
     print("Finished training")
 
-    # export model artefacts to models/ folder
+    # saving model dataframes in the database so it could be used for evaluation and scoring
     
     model.model.to_sql(table_name = kwargs.get("model_table"), if_exists = 'replace')
     model.statistical_measures.to_sql(table_name = kwargs.get("model_table") + "_rpt", if_exists = 'replace')
