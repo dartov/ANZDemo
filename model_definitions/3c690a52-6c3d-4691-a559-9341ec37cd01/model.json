@@ -1,0 +1,6 @@
+{
+    "id": "3c690a52-6c3d-4691-a559-9341ec37cd01",
+    "name": "VAL Churn",
+    "description": "Churn model using VAL",
+    "language": "python"
+}
